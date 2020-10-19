@@ -1,7 +1,6 @@
 --// UI Library by AbstractPoo at https://v3rmillion.net
 
 local library = {}
-
 local ts = game:GetService("TweenService")
 local ti = function(length) 
 	return TweenInfo.new(length or 0.2, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)

@@ -1,3 +1,5 @@
+-- UI Library by AbstractPoo | v3rmillion.net
+
 local library = loadstring(game:HttpGet('https://raw.githubusercontent.com/AbstractPoo/Main/AbstractUI/AbstractUI'))()
 lib = library:Create("UI Library")
 lib:Divider("Aimbot")

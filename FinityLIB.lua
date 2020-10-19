@@ -6,6 +6,8 @@
 	| |     _| |_| |\  |_| |_   | |     | |   
 	|_|    |_____|_| \_|_____|  |_|     |_|   
 	
+	Tutorial:
+		https://detourious.gitbook.io/project-finity/tutorials/tutorial
 	Source:
 		https://d3to-finity.000webhostapp.com/files/source-0.1.2.txt
 	Version:

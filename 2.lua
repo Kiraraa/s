@@ -1,7 +1,7 @@
 -- UI Library by AbstractPoo | v3rmillion.net
 -- https://www.roblox.com/games/5450795073
 
-local a = loadstring(game:HttpGet('https://raw.githubusercontent.com/Kiraraa/s/main/AbstractLIB.lua'))()
+local a = loadstring(game:HttpGet('https://raw.githubusercontent.com/AbstractPoo/Main/AbstractUI/AbstractUI))()
 lib = a:Create("Beat the Scammers!")
 lib:Divider("Press right shift to hide the GUI.")
 lib:Dropdown(

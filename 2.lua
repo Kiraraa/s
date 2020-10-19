@@ -8,7 +8,7 @@ lib:Dropdown(
     "Credits",
     "Those who made the stuff.",
     {"AbstractPoo | UI Library", "Kirara | Script"},
-    function(b)
+    function()
     end
 )
 lib:Button(

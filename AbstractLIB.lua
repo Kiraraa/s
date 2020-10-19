@@ -1,4 +1,4 @@
---// UI Library by AbstractPoo at https://v3rmillion.net
+--// UI Library Creator: AbstractPoo | https://v3rmillion.net
 --// Example: https://github.com/Kiraraa/s/blob/main/AbstractEX.lua
 
 local library = {}

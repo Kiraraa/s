@@ -1,7 +1,8 @@
---// UI Library Creator: AbstractPoo | https://v3rmillion.net
+--// UI Library Creator: AbstractPoo | https://v3rmillion.net 
 --// Example: https://github.com/Kiraraa/s/blob/main/AbstractEX.lua
 
 local library = {}
+
 local ts = game:GetService("TweenService")
 local ti = function(length) 
 	return TweenInfo.new(length or 0.2, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
@@ -560,3 +561,4 @@ function library:Create(name, size)
 
 	return features
 end
+return library

@@ -1,4 +1,4 @@
-local library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Kiraraa/s/main/AbstractLIB.lua'))()
+local library = loadstring(game:HttpGet('https://raw.githubusercontent.com/AbstractPoo/Main/AbstractUI/AbstractUI'))()
 lib = library:Create("UI Library")
 lib:Divider("Aimbot")
 lib:Toggle("Toggle", "Toggles the aimbot on", false, function(state)

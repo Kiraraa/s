@@ -15,12 +15,9 @@ lib:Button(
     "Shield",
     "Teleport to all shields.",
     function()
-        local c = 25
-        while c > 0 do
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
-                game:GetService("Workspace").Shields.Parts.Shield.CFrame
-            wait(0.1)
-            c = c - 1
+        for i, v in next, game.Workspace.Shields.Parts:GetChildren() do
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Position)
+            wait()
         end
     end
 )

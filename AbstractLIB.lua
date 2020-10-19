@@ -1,5 +1,6 @@
 --// UI Library Creator: AbstractPoo | https://v3rmillion.net 
 --// Example: https://github.com/Kiraraa/s/blob/main/AbstractEX.lua
+--// Source: https://github.com/AbstractPoo/Main/blob/AbstractUI/AbstractUI
 
 local library = {}
 
@@ -22,10 +23,10 @@ library.buttoncontainerhovered = Color3.fromRGB(44, 44, 44)
 library.toggletrue = toggletrue or Color3.fromRGB(80, 225, 120)
 library.togglefalse = togglefalse or Color3.fromRGB(200, 70, 70)
 library.scrollbar = Color3.fromRGB(77, 77, 77)
-library.dropdowncontainer = Color3.fromRGB(77, 77, 77)
+library.dropdowncontainer = Color3.fromRGB(22, 22, 22)
 library.divider = Color3.fromRGB(33, 33, 33)
 library.descriptiontext = Color3.fromRGB(170, 170, 170)
-library.dropdownbuttonhovered = Color3.fromRGB(88, 88, 88)
+library.slidingbar = Color3.fromRGB(66, 66, 66)
 
 function library:addRound(object)
 	local round = Instance.new("UICorner", object)
@@ -122,6 +123,7 @@ function library:Create(name, size)
 	end)
 	CloseUI.MouseButton1Click:connect(function()
 		UILIB:Destroy()
+		UILIB = nil
 	end)
 
 	local TextLabel = Instance.new("TextLabel")
@@ -476,15 +478,25 @@ function library:Create(name, size)
 				local Divider = Instance.new("Frame")
 				Divider.Name = "Divider"
 				Divider.Parent = OptionsContainer
-				Divider.BackgroundColor3 = Color3.new(0.172549, 0.172549, 0.172549)
+				Divider.BackgroundColor3 = library.buttoncontainer
 				Divider.BorderSizePixel = 0
 				Divider.Size = UDim2.new(1, 0, 0, 2)
+				
+				local hovered = ts:Create(Divider, ti(0.2), {BackgroundColor3 = library.buttoncontainerhovered})
+				local normal = ts:Create(Divider, ti(0.2), {BackgroundColor3 = library.buttoncontainer})
+
+				Dropdown.MouseEnter:connect(function()
+					hovered:Play()
+				end)
+
+				Dropdown.MouseLeave:connect(function()
+					normal:Play()
+				end)
 			end
 
 			local Option = Instance.new("TextButton")
 			Option.Name = "Option"
 			Option.Parent = OptionsContainer
-			Option.BackgroundColor3 = library.dropdowncontainer
 			Option.BackgroundTransparency = 1
 			Option.Size = UDim2.new(1, 0, 0, 25)
 			Option.Font = Enum.Font.SourceSans
@@ -495,7 +507,6 @@ function library:Create(name, size)
 			local TextLabel = Instance.new("TextLabel")
 			TextLabel.Parent = Option
 			TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-			TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
 			TextLabel.BackgroundTransparency = 1
 			TextLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
 			TextLabel.Size = UDim2.new(1, -12, 1, 0)
@@ -509,19 +520,7 @@ function library:Create(name, size)
 				spawn(function()
 					callback(v)
 				end)
-			end)
-			
-			--[[local optionhovered = ts:Create(Option, ti(0.2), {BackgroundColor3 = library.dropdownbuttonhovered})
-			local optionnormal = ts:Create(Option, ti(0.2), {BackgroundColor3 = library.dropdowncontainer})
-
-			Option.MouseEnter:connect(function()
-				optionhovered:Play()
-			end)
-
-			Option.MouseLeave:connect(function()
-				optionnormal:Play()
-			end)]]
-			
+			end)			
 		end
 		
 		local hovered = ts:Create(Dropdown, ti(0.2), {BackgroundColor3 = library.buttoncontainerhovered})
@@ -558,7 +557,150 @@ function library:Create(name, size)
 		
 		updatescroll()
 	end
+	
+	function features:Slider(name, description, min, max, default, callback)
+		name = name or "Slider"
+		description = description or ""
+		min = min or 0
+		max = max or 100
+		default = default or max / 2 or 50
+		callback = callback or function() end
+			
+		local Slider = Instance.new("TextButton")
+		Slider.Name = "Slider"
+		Slider.Parent = Container
+		Slider.BackgroundColor3 = library.buttoncontainer
+		Slider.BorderSizePixel = 0
+		Slider.Size = UDim2.new(1, -20, 0, 50)
+		Slider.AutoButtonColor = false
+		Slider.Text = ""
+		
+		library:addRound(Slider)
+		
+		local ButtonName = Instance.new("TextLabel")
+		ButtonName.Name = "ButtonName"
+		ButtonName.Parent = Slider
+		ButtonName.BackgroundColor3 = Color3.new(1, 1, 1)
+		ButtonName.BackgroundTransparency = 1
+		ButtonName.Position = UDim2.new(0, 10, 0, 0)
+		ButtonName.Size = UDim2.new(0.5, 0, 0.5, 0)
+		ButtonName.Font = Enum.Font.SourceSansSemibold
+		ButtonName.Text = name
+		ButtonName.TextColor3 = Color3.new(1, 1, 1)
+		ButtonName.TextSize = 16
+		ButtonName.TextXAlignment = Enum.TextXAlignment.Left
+		
+		local Description = Instance.new("TextLabel")
+		Description.Name = "Description"
+		Description.Parent = Slider
+		Description.AnchorPoint = Vector2.new(0, 1)
+		Description.BackgroundColor3 = Color3.new(1, 1, 1)
+		Description.BackgroundTransparency = 1
+		Description.Position = UDim2.new(0, 10, 1, 0)
+		Description.Size = UDim2.new(0.5, 0, 0.5, 0)
+		Description.Font = Enum.Font.SourceSansSemibold
+		Description.Text = description
+		Description.TextColor3 = library.descriptiontext
+		Description.TextSize = 15
+		Description.TextXAlignment = Enum.TextXAlignment.Left
+		Description.TextYAlignment = Enum.TextYAlignment.Top
+		
+		local Sliding = Instance.new("TextLabel")
+		Sliding.Name = "Sliding"
+		Sliding.Parent = Slider
+		Sliding.AnchorPoint = Vector2.new(1, 1)
+		Sliding.BackgroundColor3 = library.slidingbar
+		Sliding.Position = UDim2.new(1, -5, 0.75, 0)
+		Sliding.Size = UDim2.new(0.5, 0, 0, 7)
+		Sliding.Font = Enum.Font.SourceSans
+		Sliding.Text = ""
+		Sliding.TextColor3 = Color3.new(0, 0, 0)
+		Sliding.TextSize = 14
+		
+		local slidinground = Instance.new("UICorner", Sliding)
+		slidinground.CornerRadius = UDim.new(0, 2)
+		
+		local Indicator = Instance.new("Frame")
+		Indicator.Name = "Indicator"
+		Indicator.Parent = Sliding
+		Indicator.AnchorPoint = Vector2.new(0.5, 0.5)
+		Indicator.BackgroundColor3 = Color3.new(1, 1, 1)
+		Indicator.Position = UDim2.new(0.5, 0, 0.5, 0)
+		Indicator.Size = UDim2.new(0, 16, 0, 16)
+		
+		local indicatorround = Instance.new("UICorner", Indicator)
+		slidinground.CornerRadius = UDim.new(0, 100)
+		
+		local Value = Instance.new("TextLabel")
+		Value.Name = "Value"
+		Value.Parent = Slider
+		Value.AnchorPoint = Vector2.new(1, 1)
+		Value.BackgroundTransparency = 1
+		Value.Position = UDim2.new(1, -5, 0.5, 0)
+		Value.Size = UDim2.new(0.5, 0, 0.5, 0)
+		Value.Font = Enum.Font.SourceSansSemibold
+		Value.Text = string.format("%d / %d", default, max)
+		Value.TextColor3 = library.descriptiontext
+		Value.TextSize = 16
+		Value.TextXAlignment = Enum.TextXAlignment.Right
+		
+		local down
+		local percentage = 0.5
+		local value
+		
+		Slider.MouseButton1Down:connect(function()
+			down = true
+			while down and rs.RenderStepped:wait() do
+				percentage = math.clamp(((mouse.X - Sliding.AbsolutePosition.X) / Sliding.AbsoluteSize.X), 0, 1)
+				Indicator:TweenPosition(UDim2.new(percentage, 0, 0.5, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, 0.05)
+				value = (percentage * (max - min)) + min
+				Value.Text = string.format("%d / %d", value, max)
+				spawn(function()
+					pcall(callback, math.floor(value))
+				end)
+			end
+		end)
+		
+		connection = is.InputEnded:connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 and UILIB then
+				down = false
+				Indicator:TweenPosition(UDim2.new(percentage, 0, 0.5, 0), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, 0.02) 
+			elseif not UILIB then
+				connection:Disconnect()
+			end
+		end)
+		
+		local hovered = ts:Create(Slider, ti(0.2), {BackgroundColor3 = library.buttoncontainerhovered})
+		local normal = ts:Create(Slider, ti(0.2), {BackgroundColor3 = library.buttoncontainer})
 
+		Slider.MouseEnter:connect(function()
+			hovered:Play()
+		end)
+
+		Slider.MouseLeave:connect(function()
+			normal:Play()
+		end)
+		
+		updatescroll()
+		
+		--[[local mt = {
+			__newindex = function(d, i, v)
+				print(d, i, v)
+				if i == "Name" then
+					ButtonName.Text = v
+				elseif i == "Description" then
+					Description.Text = v
+				elseif i == "Min" then
+					min = v
+				elseif i == "Max" then
+					max = v				
+				end
+			end
+		}
+		local sliderlib = {}
+		setmetatable(sliderlib, mt)
+		return sliderlib]]
+	end
 	return features
 end
 return library

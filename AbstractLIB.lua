@@ -1,4 +1,4 @@
---// UI Library by AbstractPoo 
+--// UI Library by AbstractPoo at https://v3rmillion.net
 
 local library = {}
 

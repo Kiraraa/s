@@ -3,6 +3,7 @@
 
 local a = loadstring(game:HttpGet('https://raw.githubusercontent.com/Kiraraa/s/main/AbstractLIB.lua'))()
 lib = a:Create("Beat the Scammers!")
+lib:Divider("Press right shift to hide the GUI.")
 lib:Dropdown(
     "Credits",
     "Those who made the stuff.",

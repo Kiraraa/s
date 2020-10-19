@@ -1,7 +1,7 @@
 -- UI Library by AbstractPoo | v3rmillion.net
 -- https://www.roblox.com/games/5450795073
 
-local a = loadstring(game:HttpGet('https://raw.githubusercontent.com/Kiraraa/s/main/testing_abstract.lua'))()
+local a = loadstring(game:HttpGet('https://raw.githubusercontent.com/Kiraraa/s/main/AbstractLIB.lua'))()
 lib = a:Create("Beat the Scammers!")
 lib:Dropdown(
     "Credits",

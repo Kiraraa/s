@@ -13,4 +13,8 @@ You can only use one at a time.
 Fire element is recommended.
 ]]
 
+--[[ FARM DROPS
+I don't recommend enabling tp to shards & diamonds in standard map, the drop rate is so low. Even if the server is full.
+]]
+
 --// Last thing, let me know if something isn't working.

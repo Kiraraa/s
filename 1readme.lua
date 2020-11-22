@@ -1,5 +1,10 @@
 --// README for Elemental Battlegrounds GUI
 
+--[[ SAFETY
+I am not responsible if your account got banned.
+And if you're banned, usually it's because someone reported you to their discord server.
+]]
+
 --[[ MAPS
 If the map that you teleported to is locked, use the Map Lock Bypass in miscellaneous.
 Drop Zone = an area where shards and diamonds drop.

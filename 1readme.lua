@@ -2,6 +2,7 @@
 
 --[[ SAFETY
 I am not responsible if your account got banned.
+I don't recommend using this on your main account.
 And if you're banned, usually it's because someone reported you to their discord server.
 ]]
 

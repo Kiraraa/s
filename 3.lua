@@ -1,2 +1,2 @@
 -- https://www.roblox.com/games/2653405165
--- soon
+-- soon (probably never, i'm dogshit at scripting)
